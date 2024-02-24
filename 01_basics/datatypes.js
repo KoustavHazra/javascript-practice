@@ -18,8 +18,8 @@ let state;
 // bigint
 // string => ""
 // boolean => true/false
-// null => standalone value
-// undefined => 
+// null => standalone value => let value = null; we can use this to declare a varaible and keep it's value as null.
+// undefined => when no value is assigned at all.
 // symbol => unique
 
 
