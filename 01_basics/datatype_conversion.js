@@ -1,68 +1,48 @@
-let score = "hitesh"
+let score = '41';
+let value = '123eert';
+let newValue = null;
 
-//console.log(typeof score);
-//console.log(typeof(score));
+// console.log(typeof score);
+// console.log(typeof value);
+// console.log(typeof newValue);
 
-let valueInNumber = Number(score)
-//console.log(typeof valueInNumber);
-//console.log(valueInNumber);
+// converting str to number
+let strToNum = Number(score);
+// console.log(typeof strToNum);
+
+let valueToNum = Number(value);
+// console.log(typeof valueToNum);
+// console.log(valueToNum);  // --> it is returning NaN, but still it's type is a Number?!
+
+let newValueToNum = Number(newValue);
+// console.log(typeof newValueToNum);
+// console.log(newValueToNum);// --> it is returning 0, but still it's type is a Number?!
 
 
-// "33" => 33
-// "33abc" => NaN
-//  true => 1; false => 0
+// type of NaN --> is Number
+// console.log(typeof NaN);
 
-let isLoggedIn = "hitesh"
+// type of null --> is object
+// console.log(typeof null);
 
-let booleanIsLoggedIn = Boolean(isLoggedIn)
-//  console.log(booleanIsLoggedIn);
+let boolVal = 1;
+let boolVal2 = 2;
+let boolVal3 = '';
+let boolVal4 = 'something';
 
-// 1 => true; 0 => false
-// "" => false
-// "hitesh" => true
+let check = Boolean(boolVal);
+// console.log(typeof check);
+// console.log(check);  // returning true 
 
-let someNumber = 33
+let check2 = Boolean(boolVal2);
+// console.log(typeof check2);
+// console.log(check2);  // returning true 
 
-let stringNumber = String(someNumber)
-// console.log(stringNumber);
-// console.log(typeof stringNumber);
+let check3 = Boolean(boolVal3);
+// console.log(typeof check3);
+// console.log(check3);   // returning false
 
-// *********************** Operations ***********************
+let check4 = Boolean(boolVal4);
+// console.log(typeof check4);
+// console.log(check4);   // returning true 
 
-let value = 3
-let negValue = -value
-// console.log(negValue);
-
-// console.log(2+2);
-// console.log(2-2);
-// console.log(2*2);
-// console.log(2**3);
-// console.log(2/3);
-// console.log(2%3);
-
-let str1 = "hello"
-let str2 = " hitesh"
-
-let str3 = str1 + str2
-// console.log(str3);
-
-// console.log("1" + 2);
-// console.log(1 + "2");
-// console.log("1" + 2 + 2);
-// console.log(1 + 2 + "2");
-
-// console.log( (3 + 4) * 5 % 3);
-
-// console.log(+true);
-// console.log(+"");
-
-let num1, num2, num3
-
-num1 = num2 = num3 = 2 + 2
-
-let gameCounter = 100
-++gameCounter;
-console.log(gameCounter);
-
-// link to study
-// https://tc39.es/ecma262/multipage/abstract-operations.html#sec-type-conversion
