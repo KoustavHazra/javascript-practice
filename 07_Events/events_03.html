@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="bg-black" style="background-color: #212121; color: #fff;">
+    <h1>Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    
+    let stopInterval;
+    let intervalRunning = false;
+    const logIt = function(str) {
+        console.log('3 sec over');
+        console.log(`printed ${str}`);
+    };
+    
+    document.querySelector('#start').addEventListener('click', function() {
+        if (!intervalRunning) {
+            intervalRunning = true;
+            stopInterval = setInterval(logIt, 3000, "ola");
+        }
+    }, false);
+    
+    document.querySelector('#stop').addEventListener('click', function() {
+        clearInterval(stopInterval);
+        intervalRunning = false;
+        console.log('set interval stopped');
+    }, false);
+
+</script>
+</html>
