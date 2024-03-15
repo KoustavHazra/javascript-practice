@@ -1,0 +1,145 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+
+<script>
+    // to get the owl photo and using onClick event on it
+    // document.getElementById('owl').onclick = function(){
+    //     alert("whooo?!")
+    // }
+    
+    // difference between event bubbling and event capturing
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("clicked inside the ul.");
+    }, false);
+    document.getElementById('japan').addEventListener('click', function(e){
+        console.log("japan reached.");
+        e.stopPropagation();
+    }, false);
+
+    // prevent the opening of google.com
+    document.getElementById('google').addEventListener('click', function(e) {
+                                                            console.log('google clicked!');
+                                                            e.preventDefault();
+                                                        }, false);
+
+
+    // delete any element by clicking on it
+    const allData = document.getElementById('images').addEventListener
+            ('click', function(e) {
+                if ( e.target.tagName === "IMG") {
+                    let removeEle = e.target.parentNode;
+                    removeEle.remove();
+                }
+            }, false);
+
+    
+</script>
+
+</html>
+
+<!-- 
+
+    In js, whatever events runs most of them runs sequentially only. However there
+    are some exceptions, like browser events.
+    These events are actually all the activities  perform on a browser - such as
+    clicking on something or moving mouse pointer, drag and drop, using keyboard
+    etc... based on these all this async events run,
+
+    To hanlde these events, there are some ways ---
+
+    onClick --- this event are something it happens when we click on some element, 
+                it perfoms a task. 
+                However there are some problems in it, as in this event we don't get
+                much information about this event.
+                That's why we should be using even listners, beacuse not only they give 
+                the onClick functionality but also they give the ability of 
+                propagation.
+
+                Thus we will opt for a better approach.
+    
+    addEventListner --- this gives us many information about many events, which we can
+                        use as per our needs, which makes it really pwoerful. 
+                        Events like click, hover, drag, drop - many such events are
+                        captured by it.
+
+                        A sample of an eventListner is --
+                        document.getElementById('owl').addEventListener('click', function() {}, false);
+
+                        Where first we mention which event we want to capture, here it is 'click'.
+                        Then we add our call back function, and in the end we add a 3rd param, which 
+                        is "false" -- it is the default value ( so we can ignore it while writing ).
+                        
+                        However the "false" we write in the end, we should know why it is there. 
+
+                        The events we need to know about ---
+                        1. type ( keyboard / mouse type events ), timeStap ( track the time when activities were done ),
+                            defaultPrevented ( changing the default behaviour of any action - such as stop submiting the 
+                            form or stop the navigation after clicking on an anchor tag )
+                        2. target, toElement, srcElement, currentTarget
+                        3. clientX, clientY, offsetX, offsetY, screenX, screenY
+                        4. altKey, ctrlKey, shiftKey, keyCode
+
+    eventPropagation --- Event propagation is a concept in JavaScript that describes how events 
+                            are handled in the Document Object Model (DOM) tree.
+    
+                            This have main two contexts - event bubbling and event capturing.
+                            The default event propagation is event bubbling, which is the
+                            "false" we add in the end of addEventListener( '' , function... , false);
+
+                            If we keep it false, it will go with event bubbline.
+                            If we keep it true, it will go with event capturing.
+
+                            Even bubbline -- means, traveling from target to root. So if we have an outer element
+                                            which is of "image" id, and inside that we have an inner element of 
+                                            "japan" id, and if we click on "japan", then first it will capture the 
+                                            inner element and then the outer one.
+
+                            Event capturing -- means, traveling from root to target. So if we have an outer element
+                                            which is of "image" id, and inside that we have an inner element of 
+                                            "japan" id, and if we click on "japan", then first it will capture the 
+                                            outer element and then the inner one.
+
+                            Now sometimes we don't want our events to be propagated, which means if we click on any 
+                            inner element, it should not go to any outer element -- both in the case of bubbling and
+                            capturing.
+                            For that we can use " e.stopPropagation() " -- to stop propagation.
+
+                            it will be like:
+                            document.getElementById('japan').addEventListener('click', function(e){
+                                console.log("japan reached.");
+                                e.stopPropagation();
+                            }, false);
+    
+    preventDefault --- Sometimes we want to prevent a default behaviour of any element like an anchor tag.
+                            Let's say we don't want it to open the link when clicked on it. So basically here
+                            we are having an event whenever the link is clicked. To stop this event, we have --
+                            " e.preventDefault() ".
+
+                            It will be like -- 
+                            document.getElementById('google').addEventListener('click', function(e){
+                                console.log("google clicked.");
+                                e.preventDefault();
+                            }, false);
+
+    
+                            
+
+
+ -->
