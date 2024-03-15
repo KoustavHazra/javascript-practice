@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code | DOM</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+
+<script>
+    
+    function addLanguage(langName) {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `${langName}`;
+        document.querySelector('.language').appendChild(listItem);
+
+    };
+    addLanguage("Python");
+    addLanguage("TypeScript");
+    /*
+    Here we have a problem. Everytime we are trying to add a new language, 
+    the code has to parse through all the list items, come to the end of
+    the list and then append the new item.
+    Which for a list of 1000 or 10000 .. will be not an optimal solution.
+
+    Thus we can go for a better approach.
+    */
+
+    function addLanguageOptimally(langName) {
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(`${langName}`));
+        document.querySelector('.language').appendChild(li);
+    }
+
+    addLanguageOptimally("Java");
+    /*
+    Here the main difference between the two processes lies in how the 
+    innerHTML property is used in the first process while the appendChild 
+    method is used in the second process to append text to the li element.
+
+    Using innerHTML can be less efficient than using appendChild for adding 
+    text content. When you use innerHTML, the browser has to parse the string 
+    as HTML, which can be more computationally expensive compared to directly 
+    appending a text node using appendChild.
+    */
+
+
+    // modify any value in the body
+    const secondLang = document.querySelector("li:nth-child(2)");
+    const newLi = document.createElement('li');
+    newLi.textContent = "Mojo Jojo";
+    secondLang.replaceWith(newLi);
+
+    const firstLang = document.querySelector("li:first-child");
+    firstLang.outerHTML = '<li>Go Lang</li>';
+
+
+    // remove any value
+    const lastLang = document.querySelector("li:last-child");
+    lastLang.remove();
+
+</script>
+
+</html>
