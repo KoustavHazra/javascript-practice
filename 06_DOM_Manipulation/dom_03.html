@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM DOMA</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <!-- using div inside our body -->
+    
+</body>
+
+<script>
+
+
+
+    const div = document.createElement('div');  // creating our own div element
+    // until we are using it in the body, it is stored in the memory.
+    console.log(div);
+    
+    div.className = "main";  // giving it a className -- main
+    div.id = Math.round(Math.random() * 10 + 1);  // giving it a random id
+    div.setAttribute("title", "div manipulation"); // adding custom attribute
+    div.style.backgroundColor = "green";  // adding some style on the div
+    div.style.padding = "12px";
+    
+    div.innerText = "Dom aur JavaScript";  // adding some text in div
+    /*
+    Some information about optimization:
+
+    The div.innerText = "Dom aur JavaScript" -- is not so optimized because
+    what it does is it overwrites the available value. So if there is already some 
+    value available, it will bring those values and then set these new values.
+    
+    While the setAttribute() doesn't actually brings those existing values,
+    it directly sets those values in place of the existing ones.
+
+    And because the innterText or innerHTML brings the values and then changes it,
+    the process becomes longer, hence less optimized.
+
+
+    Instead we can do this ---
+        const textNode = document.createTextNode = "Chai aur JavaScript";
+
+        Here we are not getting those existing values, instead we are creating our own
+        text node.
+        And then we will append it in the div.
+
+        div.appendChild(textNode);
+
+        Now in the second process also we are doing it in two steps - first we are creating the
+        text node and then we are appending it to the div.
+    */
+
+    // attaching the div in the body
+    document.body.appendChild(div);
+
+    /*
+    Now that we have our own div object, we can wrap it inside a function
+    and use it anywhere we want to.
+    Also the div id, attributes, color, bg color --- all these things we can 
+    pass as arguments and customize it as we want or use a loop on it.
+    */
+
+
+</script>
+
+</html>
