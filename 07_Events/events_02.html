@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class='bg-black' style="background-color: #212121; color: #fff;">
+    <h1>Events 02</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const sayAWord = function() {
+        console.log("setTimeOut working.")
+    };
+    const changeTitle = function() {
+        document.querySelector('h1').innerHTML = "new title";
+    };
+    
+    const stopTimeOut = setTimeout( changeTitle, 5000 );
+    document.querySelector('#stop').addEventListener('click', function() {
+        clearTimeout(stopTimeOut);
+        console.log('clear time out worked.')
+    }, false)
+
+ 
+</script>
+</html>
+
+<!-- 
+
+    setTimeOut() -- This is not a part of real javascript, as whenever we call this function
+                    an API call runs, and based on the given params, it will execute.
+
+                    What this method does, is we give it a callback function and a time in the end 
+                    of this method, and after that particular time the function will be executed. 
+                    But this will be executed only once. 
+                    So if we ask to log something after 2 sec, then after 2 sec it will log it.
+
+    setInterval() -- This is also kinda same like SetTimeOut(), only difference is that it keeps
+                            on running after the time we have mentioned.
+
+                        So in this method also we give a callback function and a time in the end, and
+                        every interval of that time, it will be executing the function. So the exectution
+                        is continous.
+
+                        If we ask it to log something in 3 sec, in each 3 sec it will keep on logging
+                        that thing.
+
+    Now if we want to stop it as per our need, or maybe the method didn't ran properly and we need to stop it
+    then there are some other methods as well.
+    
+    clearTimeOut() -- If there is a setTimeOut() in our code and in any particular event we want to stop it,
+                        then we can give reference of that setTimeOUt() to thie method and whenever the SetTimeOut()
+                        is going to execute it will stop it.
+
+    clearTimeInterval() -- This method we use to stop the setInterval() method.
+
+ -->
