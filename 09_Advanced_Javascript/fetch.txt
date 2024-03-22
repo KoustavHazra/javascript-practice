@@ -1,0 +1,39 @@
+HOW FETCH WORKS INTERNALLY ?
+
+A fetch() promise only rejects when a network error is encountered (which is usually when there is a 
+    permission issue.) A fetch() promise does not reject on HTTP errors ( like 404, 304 etc.. ).
+    So all these http errors will be caught on the then() handler only, and not on the catch() 
+    handler.
+    catch() will only get the errors when fetch was not able to send a request to the server.
+
+
+
+fetch() api internal working ---
+
+let's say we executed this code:     response = fetch('something')   
+
+whenever a fetch is executed, two things happen. 1. Reserving data for fetched data and 2. fetching the data.
+
+1. just after the fetch() api is called, there will a space reserved for fetched data, let's call it "data".
+    And we have two arrays, onFulFilled and onRejection. These arrays are actually private, so manually we cannot 
+    push any values to them.
+    onFulFilled is used when our request is resolved.
+    onRejection is used when our request is rejected.
+
+2. After the space is reserved, a network request is sent to the 'something' address. Now the network
+    request will be done either by using a browser based API ( when in browser ) or a Node based API ( when
+        in NodeJs environment ). So with the resource from browser API or NodeJs API, the network request 
+    will be sent.
+    Now if and only if the request was not done, or it never was able to reach the server.. then only it
+    will go to the onRejection array.
+    
+    If the request was sent, the no matter if we get the data we wanted or any error like 404 or 304 .. any
+    errors, all will be stored in onFulFilled array. Because only after the network request was sent 
+    successfully we got those errors. Thus these errors will also be stored in the onFulFilled array.
+
+Now based on the output we got, either onFulFilled or onRejection will be executed, and withing them there 
+will be a function which is responsible to fulfill the reserved "data".
+
+Now that the "data" has the output, it will send that to the response variable. And since our variable is 
+available in global memory, response will get the output and we can get access of the data.
+
