@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="project_06.css" />
+  </head>
+  <body style="background-color: #212121; color: #fff">
+    <nav>
+      <a href="/" style="color: #fff;" aria-current="page">Home</a>
+      
+    </nav>
+
+    <h1>Start should change the Background color every second</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        // generate random color
+        const colors = function () {
+            const hex = '0123456789ABCDEF';
+            let color = "#";
+            for ( let i = 0; i < 6; i++ ) {
+                color += hex[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        };
+        console.log(colors());
+
+        // change the window color every second
+        const startChangingColor = function(color) {
+            document.body.style.backgroundColor = colors();
+        };
+
+        let stopColors;
+        let changeColors = false;
+        
+        document.querySelector('#start').addEventListener('click', function() {
+            if (!changeColors) {
+                changeColors = true;
+                stopColors = setInterval(startChangingColor, 1000);
+            }
+        }, false);
+
+        document.querySelector('#stop').addEventListener('click', function() {
+            clearInterval(stopColors);
+            stopColors = null;
+            changeColors = false;
+            console.log('color changing stopped.');
+        }, false);
+
+    </script>
+
+  </body>
+</html>
